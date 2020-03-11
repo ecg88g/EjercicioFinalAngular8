@@ -1,0 +1,22 @@
+<p>formulario works!</p>
+
+<form (ngSubmit)="onSubmit()" #formTemplate="ngForm">
+    <label for="usuario">Nombre: </label>
+    <input type="text" name="usuario" [(ngModel)]="usuario" required #username="ngModel">
+    <div *ngIf="username.invalid && username.dirty" class="alert alert-danger">
+
+        <div *ngIf="username.errors.required"> Name is required. </div>
+    
+    </div>
+
+    <label for="password">Contraseña: </label>
+    <input type="password" name="password" [(ngModel)]="pass" required minlength="4" #password="ngModel">
+    <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
+
+        <div *ngIf="password.errors.required"> Password is required. </div>
+        <div *ngIf="password.errors.minlength"> Password must be at least 4 characters long. </div>
+    
+    </div>
+
+    <button type="submit" [disabled]="!formTemplate.form.valid">Login</button>
+</form>
